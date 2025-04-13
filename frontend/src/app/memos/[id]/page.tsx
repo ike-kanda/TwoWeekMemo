@@ -3,6 +3,11 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { fetchWithAuth } from '../../lib/api'
 
+interface Memo {
+  id: number
+  content: string
+}
+
 export default function MemoEditPage() {
   const { id } = useParams()
   const router = useRouter()
@@ -12,8 +17,8 @@ export default function MemoEditPage() {
     const fetchMemo = async () => {
       try {
         const res = await fetchWithAuth(`/api/memos`)
-        const data = await res.json()
-        const memo = data.find((m: any) => m.id === Number(id))
+        const data: Memo[] = await res.json()
+        const memo: Memo | undefined = data.find((m: Memo) => m.id === Number(id))
         if (memo) setContent(memo.content)
       } catch (err) {
         console.error('メモ取得失敗:', err)
@@ -67,4 +72,4 @@ export default function MemoEditPage() {
       <div className="text-sm text-gray-400 mt-1">自動保存されています</div>
     </div>
   )
-} 
+}
