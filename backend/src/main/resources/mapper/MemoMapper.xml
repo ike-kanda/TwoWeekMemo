@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.twoWeekMemo.mapper.MemoMapper">
+
+  <select id="findAll" resultType="com.example.twoWeekMemo.model.Memo">
+    SELECT id, user_id, content, created_at, updated_at
+    FROM memo
+    ORDER BY created_at DESC
+  </select>
+  
+  <insert id="insert" parameterType="com.example.twoWeekMemo.model.Memo" 
+          useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO memo (user_id, content, created_at, updated_at)
+    VALUES (#{userId}, #{content}, NOW(), NOW())
+  </insert>
+
+  <update id="update" parameterType="com.example.twoWeekMemo.model.Memo">
+    UPDATE memo
+    SET content = #{content}, updated_at = NOW()
+    WHERE id = #{id}
+  </update>
+
+  <delete id="delete" parameterType="java.lang.Long">
+    DELETE FROM memo WHERE id = #{id}
+  </delete>
+
+  <delete id="deleteMemosOlderThan14Days">
+    DELETE FROM memo
+    WHERE updated_at &lt; NOW() - INTERVAL 14 DAY
+  </delete>
+
+</mapper>
