@@ -6,6 +6,8 @@ import com.example.twoWeekMemo.model.Memo;
 import com.example.twoWeekMemo.model.User;
 import com.example.twoWeekMemo.mapper.UserMapper;
 import com.example.twoWeekMemo.config.security.JwtUtil;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -24,8 +26,12 @@ public class MemoService {
         this.userMapper = userMapper;
     }
 
-    public List<Memo> getAllMemos() {
-        return memoMapper.findAll();
+    public List<Memo> getMemosForAuthenticatedUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = (String) auth.getPrincipal();
+
+        User user = userMapper.findByUsername(username);
+        return memoMapper.findByUserId(user.getId());
     }
 
     public Memo createMemoForAuthenticatedUser(Memo memo, HttpServletRequest request) {

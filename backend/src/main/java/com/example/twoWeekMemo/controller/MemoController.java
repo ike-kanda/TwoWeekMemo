@@ -20,7 +20,7 @@ public class MemoController {
     // メモ一覧取得
     @GetMapping
     public List<Memo> getAllMemos() {
-        return memoService.getAllMemos();
+        return memoService.getMemosForAuthenticatedUser();
     }
 
     // メモ新規作成

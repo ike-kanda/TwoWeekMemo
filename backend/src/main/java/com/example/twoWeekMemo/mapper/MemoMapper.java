@@ -12,5 +12,5 @@ public interface MemoMapper {
     void update(Memo memo);
     void delete(Long id);
     int deleteMemosOlderThan14Days();
-    Memo findById(Long id);
+    List<Memo> findByUserId(Long userId);
 }

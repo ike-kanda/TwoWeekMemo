@@ -5,11 +5,12 @@
 
 <mapper namespace="com.example.twoWeekMemo.mapper.MemoMapper">
 
-  <select id="findAll" resultType="com.example.twoWeekMemo.model.Memo">
-    SELECT id, user_id, content, created_at, updated_at
-    FROM memo
-    ORDER BY created_at DESC
-  </select>
+<select id="findByUserId" resultType="com.example.twoWeekMemo.model.Memo">
+  SELECT id, user_id, content, created_at, updated_at
+  FROM memo
+  WHERE user_id = #{userId}
+  ORDER BY created_at DESC
+</select>
   
   <insert id="insert" parameterType="com.example.twoWeekMemo.model.Memo" 
           useGeneratedKeys="true" keyProperty="id">

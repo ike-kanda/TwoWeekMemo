@@ -8,7 +8,10 @@ public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**")
-      .allowedOrigins("http://localhost:3000")
+      .allowedOrigins(
+        "http://localhost:3000", // ローカル用
+        "https://two-week-memo-gilt.vercel.app" // 本番フロントのURL
+      )
       .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
       .allowedHeaders("*")
       .allowCredentials(true);
