@@ -7,10 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface MemoMapper {
-    List<Memo> findAll();
+    List<Memo> findByUserId(Long userId);
     void insert(Memo memo);
     void update(Memo memo);
     void delete(Long id);
+    Memo findById(Long id);
     int deleteMemosOlderThan14Days();
-    List<Memo> findByUserId(Long userId);
 }
