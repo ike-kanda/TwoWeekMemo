@@ -10,7 +10,7 @@
 
 ## URL
 
-- ２WeekMemoアプリ: `https://two-week-memo-gilt.vercel.app`
+- 成果物リンク: [２WeekMemoアプリ](https://two-week-memo-gilt.vercel.app)
 
 ---
 
@@ -29,6 +29,8 @@
 || GitHub |
 || TiDB Cloud (DB) |
 | 認証方式 | JJWT 0.11.5 (JWT Bearerトークン形式) |
+
+* 短時間での個人開発であったため、GitHubはmainブランチのみで開発ブランチは未作成です。
 
 ---
 
